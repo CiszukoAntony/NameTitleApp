@@ -12,6 +12,7 @@ jobs:
     # ⚠️ OBLIGATORIO para que OpenID Connect (Trusted Publishing) funcione
     permissions:
       id-token: write
+      attestations: write  # Permiso necesario para firmar digitalmente en PyPI oficial
       
     steps:
       - name: Checkout repository
@@ -20,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.14"  # 👈 Coincide exactamente con el requires-python >=3.14 de tu pyproject.toml
+          python-version: "3.14"
           
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -28,12 +29,13 @@ jobs:
       - name: Build package with Poetry
         run: poetry build
         
-      # 1️⃣ Primero lo subimos a TestPyPI para pruebas
+      # 1️⃣ Primero a TestPyPI (desactivamos las attestations aquí para evitar el conflicto)
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
+          attestations: false  # 👈 Evita el error de archivos duplicados de certificación
           
-      # 2️⃣ Después lo subimos al PyPI oficial de producción
+      # 2️⃣ Después al PyPI oficial de producción (aquí sí las genera y sube con éxito)
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
