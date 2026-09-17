@@ -9,6 +9,7 @@ if not exist ".venv\Scripts\python.exe" (
 )
 
 :: 2. Ejecutar APP
+set "PATH=%~dp0.venv\Scripts;%PATH%"
 nametitleapp
 
 if %errorlevel% neq 0 (
