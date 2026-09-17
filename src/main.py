@@ -13,6 +13,7 @@ from modules import clear_cls_command, hotkeys, install_libs
 from rich import print
 
 install_libs.installlibs("rich", "keyboard", "typer")
+clear_cls_command.clear_cls()
 
 # Inicializamos la aplicación Typer
 app = typer.Typer(help="NameTitleApp CLI con Typer")
@@ -30,7 +31,7 @@ def run_app(name: str) -> None:
     thr_inithotkeys.start()
     time.sleep(0.1)
 
-    print(f"Bienvenido. {name}")
+    print(f"Bienvenido. {name}.")
 
     print("Presiona [ESC] para terminar.")
     kb.wait("esc")

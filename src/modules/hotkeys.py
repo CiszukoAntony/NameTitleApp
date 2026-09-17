@@ -14,10 +14,10 @@ def init_hotkeys() -> None:
     """
     Funcion que inicializa los hotkeys.
     """
-    print("Usa CONTROL+Z para cerrar custom.")
+    print("Usa CONTROL+Z para Cerrar la App")
 
     def ctrl_z_func():
-        print("\nCerrado con control + z")
+        print("\nCerrado App...")
         os._exit(1)
 
     kb.add_hotkey(hotkey="ctrl+z", callback=ctrl_z_func)
