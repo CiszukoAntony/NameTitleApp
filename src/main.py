@@ -13,8 +13,6 @@ from rich import print
 
 install_libs.installlibs("rich", "keyboard")
 
-print("\n--- Iniciando sistema principal ---")
-
 
 def main() -> typing.Any:
     """
@@ -27,6 +25,9 @@ def main() -> typing.Any:
     time.sleep(0.1)
     thr_inithotkeys.start()
     time.sleep(0.1)
+
+    name = str(input("Ingresa tu nombre: ")).strip().title()
+    print(f"Bienvenido. {name}")
 
     print("Presiona [ESC] para terminar.")
     kb.wait("esc")
