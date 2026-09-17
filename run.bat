@@ -8,8 +8,8 @@ if not exist ".venv\Scripts\python.exe" (
     goto :error
 )
 
-:: 2. Ejecutar pasando la ruta absoluta o controlada
-.venv\Scripts\python.exe src/main.py
+:: 2. Ejecutar APP
+nametitleapp
 
 if %errorlevel% neq 0 (
     echo.
