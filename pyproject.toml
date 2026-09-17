@@ -5,15 +5,11 @@ description = ""
 authors = [{ name = "CiszukoAntony", email = "fplayersoffcial@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = ["keyboard>=0.13.5", "rich>=15.0.0"]
 
 [tool.poetry]
-packages = [{ include = "nametitleapp", from = "src" }]
+packages = [{ include = "*", from = "src" }]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.dependencies]
-keyboard = "^0.13.5"
-rich = "^15.0.0"

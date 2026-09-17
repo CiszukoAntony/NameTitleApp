@@ -26,7 +26,6 @@ def init_hotkeys() -> None:
 if __name__ == "__main__":
     try:
         print("No se puede ejecutar este modulo por separado.")
-        sys.exit(0)
     except Exception as exc:
         print(
             f"\n[ERROR CRÍTICO]: {os.strerror(exc.errno) if hasattr(exc, 'errno') else exc}"

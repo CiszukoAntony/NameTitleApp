@@ -31,13 +31,11 @@ def main() -> typing.Any:
 
     print("Presiona [ESC] para terminar.")
     kb.wait("esc")
-    os._exit(1)
 
 
 if __name__ == "__main__":
     try:
         main()
-        sys.exit(0)
     except Exception as exc:
         print(
             f"\n[ERROR CRÍTICO]: {os.strerror(exc.errno) if hasattr(exc, 'errno') else exc}"
