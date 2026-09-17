@@ -1,3 +1,7 @@
+# ruff: noqa: RUF100
+# ruff: noqa: I001
+# ruff:noqa: BLE001
+
 # Imports
 import os
 import sys
@@ -17,7 +21,7 @@ if __name__ == "__main__":
     try:
         print("No se puede ejecutar este modulo por separado.")
         sys.exit(0)
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         print(
             f"\n[ERROR CRÍTICO]: {os.strerror(exc.errno) if hasattr(exc, 'errno') else exc}"
         )

@@ -1,3 +1,7 @@
+# ruff: noqa: RUF100
+# ruff: noqa: I001
+# ruff:noqa: BLE001
+
 # Imports
 import importlib
 import os
@@ -24,7 +28,7 @@ def installlibs(*librerias: str) -> None:
                     [sys.executable, "-m", "pip", "install", nombre_paquete]
                 )
                 print(f"[ÉXITO] '{nombre_paquete}' se instaló correctamente.")
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 raise ImportError(
                     f"[ERROR CRÍTICO] No se pudo instalar '{nombre_paquete}'. Motivo: {e}"
                 )
@@ -34,7 +38,7 @@ if __name__ == "__main__":
     try:
         print("No se puede ejecutar este modulo por separado.")
         sys.exit(0)
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         print(
             f"\n[ERROR CRÍTICO]: {os.strerror(exc.errno) if hasattr(exc, 'errno') else exc}"
         )

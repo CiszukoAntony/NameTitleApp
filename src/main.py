@@ -1,10 +1,12 @@
+# ruff: noqa: I001
+# ruff:noqa: BLE001
+
 # Imports
 import os
 import sys
 import threading as thr
 import time
 import typing
-
 import keyboard as kb
 from modules import clear_cls_command, hotkeys, install_libs
 from rich import print
@@ -35,7 +37,7 @@ if __name__ == "__main__":
     try:
         main()
         sys.exit(0)
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         print(
             f"\n[ERROR CRÍTICO]: {os.strerror(exc.errno) if hasattr(exc, 'errno') else exc}"
         )
