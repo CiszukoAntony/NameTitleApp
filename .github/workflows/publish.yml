@@ -1,15 +1,15 @@
-name: Publish to PyPI
+name: Publish Package
 
 on:
   release:
-    types: [published]  # Se dispara automáticamente cuando creas un Release en GitHub
+    types: [published]  # Se dispara cuando creas un Release en GitHub
 
 jobs:
   pypi-publish:
-    name: Build and publish to PyPI
+    name: Build, TestPyPI and PyPI Publish
     runs-on: ubuntu-latest
     
-    # ⚠️ IMPORTANTE: Este permiso es obligatorio para que OIDC (Trusted Publishing) funcione
+    # ⚠️ OBLIGATORIO para que OpenID Connect (Trusted Publishing) funcione
     permissions:
       id-token: write
       
@@ -20,18 +20,20 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.14"  # 👈 Coincide exactamente con el requires-python >=3.14 de tu pyproject.toml
           
       - name: Install Poetry
         uses: snok/install-poetry@v1
-        with:
-          version: latest
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          
+        
       - name: Build package with Poetry
         run: poetry build
         
-      - name: Publish package to PyPI
+      # 1️⃣ Primero lo subimos a TestPyPI para pruebas
+      - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        # No necesitas pasar tokens ni contraseñas, GitHub y PyPI se comunican solos de forma segura.
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          
+      # 2️⃣ Después lo subimos al PyPI oficial de producción
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
